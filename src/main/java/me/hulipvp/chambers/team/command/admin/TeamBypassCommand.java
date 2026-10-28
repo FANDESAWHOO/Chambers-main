@@ -1,0 +1,18 @@
+package me.hulipvp.chambers.team.command.admin;
+
+import me.hulipvp.chambers.profile.structure.Profile;
+import me.hulipvp.chambers.team.command.TeamCommand;
+import me.hulipvp.chambers.util.commandapi.Command;
+import me.hulipvp.chambers.util.commandapi.CommandArgs;
+import org.bukkit.ChatColor;
+
+public class TeamBypassCommand extends TeamCommand {
+
+    @Command(name = "faction.bypass", description = "Turn on bypass mode to build in other territories", aliases = {"f.bypass", "t.bypass", "s.bypass", "team.bypass", "squad.bypass"}, usage = "/<command>", playerOnly = true, requiresTeam = false, adminsOnly = true)
+    public void onCommand(CommandArgs commandArgs) {
+        Profile profile = plugin.getProfileManager().getProfileByUuid(commandArgs.getPlayer().getUniqueId());
+        profile.setBypassMode(!profile.isBypassMode());
+        profile.sendMessage(ChatColor.YELLOW + "Bypass mode has been " + (profile.isBypassMode() ? ChatColor.GREEN + "enabled" : ChatColor.RED + "disabled") + ChatColor.YELLOW + ".");
+    }
+
+}
