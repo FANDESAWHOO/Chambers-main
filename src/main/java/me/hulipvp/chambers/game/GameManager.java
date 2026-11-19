@@ -123,6 +123,7 @@ public class GameManager {
                 player.setAllowFlight(false);
                 player.setFlying(false);
                 player.teleport(team.getHome());
+                Chambers.getInstance().getClientManager().getWaypoint().displayWaypoints(player);
             });
         });
         Chambers.getInstance().getTeamManager().getTeamByType(TeamType.KOTH).setName(game.getKothName() == null ? game.getMapName() : game.getKothName());
@@ -133,12 +134,7 @@ public class GameManager {
 
             @Override
             public void run() {
-                Chambers.getInstance().getVillagerManager().spawnAllVillagers();
-                Chambers.getInstance().getTeamManager().getAllPlayerTeams().stream().forEach(team -> { // TODO: Move this to Team method, and call here.
-                    team.getOnlinePlayers().stream().forEach(player -> {
-                        Chambers.getInstance().getClientManager().getWaypoint().displayWaypoints(player);
-                    });
-                });
+                Chambers.getInstance().getVillagerManager().spawnAllVillagers();  
             }
 
         }.runTaskLater(Chambers.getInstance(), 20L);
@@ -161,16 +157,7 @@ public class GameManager {
      * Remove all of the Mobs on the server
      */
     public void clearAllMobs() {
-        Bukkit.getServer().getWorlds().forEach(world -> {
-            world.getEntities().forEach(entity -> {
-                if (!(entity instanceof Player)) {
-                    entity.remove();
-                }
-                if (entity.getType() == EntityType.VILLAGER) {
-                    entity.remove();
-                }
-            });
-        });
+    	Chambers.getInstance().getVillagerManager().removeAllVillagers();
     }
 
 }

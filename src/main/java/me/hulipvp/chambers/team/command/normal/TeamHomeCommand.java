@@ -17,12 +17,12 @@ public class TeamHomeCommand extends TeamCommand {
         Profile profile = plugin.getProfileManager().getProfileByUuid(commandArgs.getPlayer().getUniqueId());
         if (profile.getProfileStatus() == ProfileStatus.PLAYING) {
             if (Chambers.getInstance().getTimerManager().getCombatTimer().getRemaining(profile.getPlayer()) > 0L) {
-                commandArgs.getPlayer().sendMessage("You can't home while pvp tag.");
+                commandArgs.getPlayer().sendMessage("You can't home while spawn-tagged.");
                 return;
             }
             Chambers.getInstance().getTimerManager().getTeleportTimer().setCooldown(profile.getPlayer(), profile.getId(), TimeUnit.SECONDS.toMillis(10), true);
         } else {
-            commandArgs.getPlayer().sendMessage("You are not playing currently.");
+            commandArgs.getPlayer().sendMessage("You're not in-game.");
         }
     }
 

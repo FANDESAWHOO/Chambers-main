@@ -37,14 +37,14 @@ public class WaypointListener implements Listener {
     public void displayWaypoints(ApolloPlayer player) {
         for (Team team : Chambers.getInstance().getTeamManager().getAllPlayerTeams()) {
             if (team.getClaim() == null) {
-                Bukkit.getLogger().warning("[Chambers] Team '" + team.getName() + "' no tiene claim asignado.");
+                Bukkit.getLogger().warning("[Chambers] Team '" + team.getName() + "' doesn't have assigned claims.");
                 continue;
             }
             Chambers.getInstance().getClientManager().getLunarClient().sendWaypoint(player, team.getFormattedName(), team.getHome(), me.hulipvp.chambers.util.Color.toAwtColor(team.getColor()));
         }
         for (Team team : Chambers.getInstance().getTeamManager().getAllSystemTeams()) {
             if (team.getClaim() == null) {
-                Bukkit.getLogger().warning("[Chambers] Team '" + team.getName() + "' no tiene claim asignado.");
+                Bukkit.getLogger().warning("[Chambers] Team '" + team.getName() + "' doesn't have assigned claims.");
                 continue;
             }
             Chambers.getInstance().getClientManager().getLunarClient().sendWaypoint(player, team.getFormattedName(), team.getClaim().getCenter(), me.hulipvp.chambers.util.Color.toAwtColor(team.getColor()));

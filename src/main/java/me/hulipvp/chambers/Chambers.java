@@ -72,7 +72,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * SOFTWARE.
  */
 @Getter
-public class Chambers extends JavaPlugin {
+public class Chambers extends JavaPlugin { // Settings.yml :P
 
     public static final Joiner SPACE_JOINER = Joiner.on(' ');
     /* SINGLE, like me, plugin instance */
